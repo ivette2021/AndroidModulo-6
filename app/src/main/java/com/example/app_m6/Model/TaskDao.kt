@@ -1,0 +1,5 @@
+package com.example.app_m6.Model
+
+//INTERFAZ REPRESENTA LAS ACCIONES QUE VAMOS HACER EN NUESTRA BASE DE DATOS
+interface TaskDao {
+}
