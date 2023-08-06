@@ -61,7 +61,7 @@ class FirstFragment : Fragment() {
             descripcion = "Prueba de insercion de datos",
             date = "18/07/2023"
         )
-GlobalScope.launch(Dispatchers.ID) {
+GlobalScope.launch(Dispatchers.IO) {
     dataBase.getTaskDao().insertTask(newTask1)
     Log.d("Resultado: OK", newTask1.toString() )
 }
