@@ -35,6 +35,6 @@ interface TaskDao {
     fun getAlltask(): List<Task>
 
     //ejemplo de traer solo una tarea
-    @Query("SELECT * FROM TASK_TABLE WHERE idTask = idTask Limit 1")
-    fun getTaskById(idTask: Int): Task
+//    @Query("SELECT * FROM TASK_TABLE WHERE idTask = idTask Limit 1")
+//    fun getTaskById(idTask: Int): Task
 }

@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 
-@Database(entities = [Task::class], version=1, exportSchema = false)
+@Database(entities = [Task::class], version = 1, exportSchema = false)
 abstract class TaskDataBase : RoomDatabase() {
 
     //Dao tiene las operaciones de la base de datos
@@ -18,15 +18,15 @@ abstract class TaskDataBase : RoomDatabase() {
     companion object {
 
         @Volatile
-        private var INSTANCE : TaskDataBase?= null
+        private var INSTANCE: TaskDataBase? = null
         fun getDatabase(context: Context): TaskDataBase {               //obtener nuestro contexto
 
-          val tempInstance = INSTANCE
+            val tempInstance = INSTANCE
 
-            if (tempInstance != null){
+            if (tempInstance != null) {
                 return tempInstance
             }
-            synchronized(this){           //sincroniza los hilos en caso de haber mas de uno
+            synchronized(this) {           //sincroniza los hilos en caso de haber mas de uno
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     TaskDataBase::class.java,
@@ -34,7 +34,7 @@ abstract class TaskDataBase : RoomDatabase() {
                 ).build() //aplicar los cambios
 
 
-                INSTANCE= instance
+                INSTANCE = instance
                 return instance
             }
         }
