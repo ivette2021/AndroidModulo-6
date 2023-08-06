@@ -1,6 +1,7 @@
 package com.example.app_m6
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,9 @@ import com.example.app_m6.Model.Task
 import com.example.app_m6.Model.TaskDataBase
 import com.example.app_m6.Model.TaskDao
 import com.example.app_m6.databinding.FragmentFirstBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -47,17 +51,20 @@ class FirstFragment : Fragment() {
 
             TaskDataBase::class.java,
             "task_database")
-            .allowMainThreadQueries()  //obligo a insertar en el hilo principal , pero no es bueno hacer esta practica
+          //  .allowMainThreadQueries()  //obligo a insertar en el hilo principal , pero no es bueno hacer esta practica
             .build()
 
-        val newTask = Task(
+        //le colocamos el 1 ejecutar hilo secuendario
+        val newTask1 = Task(
 
             task = "Prueba BD 59",
             descripcion = "Prueba de insercion de datos",
             date = "18/07/2023"
         )
-
-        dataBase.getTaskDao().insertTask(newTask)
+GlobalScope.launch(Dispatchers.ID) {
+    dataBase.getTaskDao().insertTask(newTask1)
+    Log.d("Resultado: OK", newTask1.toString() )
+}
 
     }
 
