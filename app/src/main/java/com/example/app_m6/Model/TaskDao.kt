@@ -27,6 +27,10 @@ interface TaskDao {
     @Delete
     fun deleteOneTask(task: Task)
 
+    //creamos una funcion para borrar todo db
+    @Query("DELETE FROM TASK_TABLE")
+    suspend fun  deleteAlltask()
+
     @Query("SELECT * FROM TASK_TABLE")
     fun getAlltask1(): List<Task>
 

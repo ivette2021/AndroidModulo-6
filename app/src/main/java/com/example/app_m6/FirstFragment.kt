@@ -16,15 +16,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-/**
- * A simple [Fragment] subclass as the default destination in the navigation.
- */
 class FirstFragment : Fragment() {
 
     private var _binding: FragmentFirstBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -44,14 +38,13 @@ class FirstFragment : Fragment() {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
         }
 
-
-
         val dataBase = Room.databaseBuilder(
             requireContext().applicationContext,
 
             TaskDataBase::class.java,
-            "task_database")
-          //  .allowMainThreadQueries()  //obligo a insertar en el hilo principal , pero no es bueno hacer esta practica
+            "task_database"
+        )
+       //  .allowMainThreadQueries()  //obligo a insertar en el hilo principal , pero no es bueno hacer esta practica
             .build()
 
         //le colocamos el 1 ejecutar hilo secuendario
@@ -61,28 +54,28 @@ class FirstFragment : Fragment() {
             descripcion = "Prueba de insercion de datos",
             date = "18/07/2023"
         )
-GlobalScope.launch(Dispatchers.IO) {
-    dataBase.getTaskDao().insertTask(newTask1)
-    Log.d("Resultado: OK", newTask1.toString() )
-}
+        GlobalScope.launch(Dispatchers.IO) {
+            dataBase.getTaskDao().insertTask(newTask1) //estos son metodos ya definidos en Dao, si no esta definido alli no aparecera aca autocompletado
+            Log.d("Resultado: OK", newTask1.toString())
+        }
+ //traemos todas las tareas
+        GlobalScope.launch(Dispatchers.IO) {
+            val allTask = dataBase.getTaskDao().getAlltask1()
+            Log.d("Lista de tareas", allTask.toString())
+        }
+        //elimina una tarea
+        GlobalScope.launch {
+        //    dataBase.getTaskDao().deleteOneTask(newTask1)
+        }
+
+        //eliminar todo
+        GlobalScope.launch {
+        // dataBase.getTaskDao().deleteAlltask()
+        }
+
 
     }
-
-
-
-
-
-    // probaremos nuestro base de datos, agregamos nuestra tarea en base a los parametros de task
-
-
     //usamos la instancia de Dao
-
-
-
-
-
-
-
 
     override fun onDestroyView() {
         super.onDestroyView()
