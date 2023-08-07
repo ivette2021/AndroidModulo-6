@@ -1,9 +1,10 @@
-package com.example.app_m6.Model
+package com.example.app_m6.Model.model
 
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import com.example.app_m6.Model.model.User
 import kotlinx.coroutines.flow.Flow
 
 @Dao

@@ -1,4 +1,4 @@
-package com.example.app_m6
+package com.example.app_m6.View
 
 import android.os.Bundle
 import android.util.Log
@@ -8,9 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.room.Room
-import com.example.app_m6.Model.Task
-import com.example.app_m6.Model.TaskDataBase
-import com.example.app_m6.Model.TaskDao
+import com.example.app_m6.Model.model.Task
+import com.example.app_m6.Model.model.TaskDataBase
+import com.example.app_m6.R
 import com.example.app_m6.databinding.FragmentFirstBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
