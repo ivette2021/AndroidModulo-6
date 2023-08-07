@@ -6,11 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModel
 import androidx.navigation.fragment.findNavController
 import androidx.room.Room
 import com.example.app_m6.Model.model.Task
 import com.example.app_m6.Model.model.TaskDataBase
 import com.example.app_m6.R
+import com.example.app_m6.ViewModel.TaskViewModel
 import com.example.app_m6.databinding.FragmentFirstBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -20,7 +23,7 @@ class FirstFragment : Fragment() {
 
     private var _binding: FragmentFirstBinding? = null
     private val binding get() = _binding!!
-
+    private val viewModel: TaskViewModel by activityViewModels() // instancia de viewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,40 +41,44 @@ class FirstFragment : Fragment() {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
         }
 
-        val dataBase = Room.databaseBuilder(
-            requireContext().applicationContext,
+        /*  val dataBase = Room.databaseBuilder(
+              requireContext().applicationContext,
+              TaskDataBase::class.java,
+              "task_database"
+          )*/
+        //  .allowMainThreadQueries()  //obligo a insertar en el hilo principal , pero no es bueno hacer esta practica
+        //     .build()
+        //le colocamos el 1 ejecutar hilo secundario
 
-            TaskDataBase::class.java,
-            "task_database"
+
+        val newTask = Task(
+
+            title = "BD59",
+            descripcion = "Prueba 059",
+            date = "20/07/2023",
+            priority = 7,
+            state = true
         )
-       //  .allowMainThreadQueries()  //obligo a insertar en el hilo principal , pero no es bueno hacer esta practica
-            .build()
 
-        //le colocamos el 1 ejecutar hilo secuendario
-        val newTask1 = Task(
-
-            task = "Prueba BD 59",
-            descripcion = "Prueba de insercion de datos",
-            date = "18/07/2023"
-        )
-        GlobalScope.launch(Dispatchers.IO) {
-            dataBase.getTaskDao().insertTask(newTask1) //estos son metodos ya definidos en Dao, si no esta definido alli no aparecera aca autocompletado
+        viewModel.insertTask(newTask)
+       /* GlobalScope.launch(Dispatchers.IO) {
+            dataBase.getTaskDao()
+                .insertTask(newTask1) //estos son metodos ya definidos en Dao, si no esta definido alli no aparecera aca autocompletado
             Log.d("Resultado: OK", newTask1.toString())
         }
- //traemos todas las tareas
+        //traemos todas las tareas
         GlobalScope.launch(Dispatchers.IO) {
             val allTask = dataBase.getTaskDao().getAlltask1()
             Log.d("Lista de tareas", allTask.toString())
         }
         //elimina una tarea
         GlobalScope.launch {
-        //    dataBase.getTaskDao().deleteOneTask(newTask1)
+            //    dataBase.getTaskDao().deleteOneTask(newTask1)
         }
-
         //eliminar todo
         GlobalScope.launch {
-        // dataBase.getTaskDao().deleteAlltask()
-        }
+            // dataBase.getTaskDao().deleteAlltask()
+        }*/
 
 
     }

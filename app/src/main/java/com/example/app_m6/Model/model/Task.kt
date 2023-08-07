@@ -13,14 +13,13 @@ data class Task (
     @PrimaryKey(autoGenerate = true)
     @NonNull
     // sqlite mapea el objeto y lo transfroma en tabla
-    val task: String,
-    //val idTask: Int =0,
+   // val task: String,
+    val idTask: Int =0,
+    val title: String,
     val descripcion: String,
     val date: String,
-
-//    val title: String,
-//    val priority: Int,
-//    val state: Boolean
+    val priority: Int,
+    val state: Boolean
 
 
     )
