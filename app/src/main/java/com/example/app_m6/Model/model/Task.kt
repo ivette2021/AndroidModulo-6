@@ -14,12 +14,12 @@ data class Task (
     @NonNull
     // sqlite mapea el objeto y lo transfroma en tabla
    // val task: String,
-    val idTask: Int =0,
+    val id: Int = 0,
     val title: String,
     val descripcion: String,
-    val date: String,
+    val date : String,
     val priority: Int,
-    val state: Boolean
+    val state :Boolean
 
 
     )

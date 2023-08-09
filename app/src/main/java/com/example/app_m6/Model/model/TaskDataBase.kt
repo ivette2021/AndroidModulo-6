@@ -7,18 +7,16 @@ import androidx.room.RoomDatabase
 
 
 @Database(entities = [Task::class], version = 1) //exportamos directamente
-//@Database(entities = [Task::class], version = 1, exportSchema = false)
+
 abstract class TaskDataBase : RoomDatabase() { //nos aseguramos que esta clase sea unica
 
-    //Dao tiene las operaciones de la base de datos
-    abstract fun getTaskDao(): TaskDao //conexion dao con la base de datos
+    abstract fun getTaskDao(): TaskDao //instancia del Dao siempre debe estar // conexion con la base de dato
+    companion object { //expone un objeto sin instanciar la clase
 
-    //instancia de forma directa
-    companion object {
-
+        //esta variable siempre este disponible
         @Volatile
         private var INSTANCE: TaskDataBase? = null
-        fun getDatabase(context: Context): TaskDataBase {               //obtener nuestro contexto
+        fun getDatabase(context: Context): TaskDataBase {   //obtener nuestro contexto donde ejecutamos los procesos
 
             val tempInstance = INSTANCE
 

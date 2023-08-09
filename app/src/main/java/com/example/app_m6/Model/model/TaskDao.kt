@@ -38,16 +38,19 @@ interface TaskDao {
     fun getAlltask1(): LiveData <List<Task>> //usando livedata, esto ya seria un return
 
     //ejemplo para traer todas las tareas ordenadas por id
-    @Query("SELECT * FROM TASK_TABLE ORDER BY idTask ASC")
+    @Query("SELECT * FROM TASK_TABLE ORDER BY id ASC")
     //fun getAlltask(): List<Task>
      fun getAlltask(): LiveData<List<Task>>
 
-    //ejemplo de traer solo una tarea
-    @Query("SELECT * FROM TASK_TABLE WHERE id=:id")
-    //fun getTaskById(idTask: Int): Task
-    fun getTaskByTitle(title: String): LiveData<Task>
 
     //ejemplo de traer por titulo usando LiveData
     @Query("SELECT * FROM TASK_TABLE WHERE title=:title Limit 1")
     fun TaskByRTitle(title: String) : LiveData<Task>
+
+
+    // Traer por id
+    @Query("SELECT * FROM TASK_TABLE WHERE  id=:id")
+    fun getTaskById(id:Int):LiveData<Task>
+
+
 }
