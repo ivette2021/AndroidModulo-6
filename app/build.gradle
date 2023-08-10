@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -54,7 +55,8 @@ dependencies {
 
     //Glide leer una url convertirla en imagen
     implementation "com.github.bumptech.glide:glide:4.13.0"
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.13.0'
+    // implementation 'jp.wasabeef:glide-transformations:4.3.0' // es para que la imagen se coloree a fuerza pero no funciona bien
 
     //ROOM , persistencia de datos
     implementation "androidx.room:room-runtime:2.5.2"

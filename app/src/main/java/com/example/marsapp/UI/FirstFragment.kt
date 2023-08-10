@@ -48,16 +48,13 @@ class FirstFragment : Fragment() {
             }
 
         })
-//--------observar lo que esta en la base de datos con corrutinas--------------------
+//----------------------observar lo que esta en la base de datos con corrutinas--------------------
         viewModel.allTerrains.observe(viewLifecycleOwner, Observer {
 
             adapter.update(it)
             Log.d("Listado",it.toString())
         })
 
-
-
     }
-
 
 }

@@ -1,6 +1,7 @@
 package com.example.marsapp
 
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,8 +9,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.example.marsapp.Model.Remote.MarsRealState
 import com.example.marsapp.databinding.MarsItermBinding
+import jp.wasabeef.glide.transformations.ColorFilterTransformation
 
 class AdapterMars : RecyclerView.Adapter<AdapterMars.MarsVH>() {
 
@@ -36,10 +39,11 @@ class AdapterMars : RecyclerView.Adapter<AdapterMars.MarsVH>() {
         RecyclerView.ViewHolder(binding.root),
 
         View.OnClickListener { //hacemos clickeable el elemento
-        fun bin(mars: MarsRealState) {
+        fun bind(mars: MarsRealState) {
 
             // ACA glide no olvidar dependencias , para que cargue las imagenes
-            Glide.with(binding.imageView2).load(mars.img_src).centerCrop()
+            Glide.with(binding.root.context).load(mars.img_src).centerCrop() // Glide.with(binding.imageView2) es lo mismo que (binding.root.context)...
+              //  .apply(RequestOptions.bitmapTransform(ColorFilterTransformation(Color.parseColor("#FFA500")))) // Color naranja (sepia)
                 .into(binding.imageView2) //usamos los contenedores de imagen de xml
             // Activar el Clik
             itemView.setOnClickListener(this) //captamos el click que estamos haciendo sobre la imagen
@@ -53,7 +57,6 @@ class AdapterMars : RecyclerView.Adapter<AdapterMars.MarsVH>() {
 
     }
 
-
     //_______________________________Estos Métodos se implementan de Adapter Mars-------------------------------------------
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MarsVH { //
@@ -65,7 +68,7 @@ class AdapterMars : RecyclerView.Adapter<AdapterMars.MarsVH>() {
         position: Int
     ) { //obtiene la posicion de los elementos
         val terrain = listMarsItem[position]
-        holder.bin(terrain)
+        holder.bind(terrain)
     }
 
     override fun getItemCount(): Int =
