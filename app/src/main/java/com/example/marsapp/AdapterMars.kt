@@ -9,10 +9,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.example.marsapp.Model.Remote.MarsRealState
 import com.example.marsapp.databinding.MarsItermBinding
-import jp.wasabeef.glide.transformations.ColorFilterTransformation
+
 
 class AdapterMars : RecyclerView.Adapter<AdapterMars.MarsVH>() {
 
