@@ -20,7 +20,6 @@ class FirstFragment : Fragment() {
     private lateinit var  mBinding : FragmentFirstBinding
     private val mViewModel : CoursesViewModel by activityViewModels()
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,7 +34,6 @@ class FirstFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-
         // DEBEMOS INTANCIAR ADAPTER
 
         val adapter = CoursesAdapter()
@@ -47,9 +45,7 @@ class FirstFragment : Fragment() {
                 Log.d("Listado", it.toString())
                 adapter.update(it)
             }
-
         })
-
 
         // MÉTODO PARA SELECCIONAR
 
@@ -63,7 +59,6 @@ class FirstFragment : Fragment() {
                 putString("courseId", it.id)
             }
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment, bundle)
-
         })
 
     }
