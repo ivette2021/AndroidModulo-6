@@ -7,19 +7,15 @@ import androidx.room.PrimaryKey
 //LA PRIMERA CLASE QUE VA A REPRESENTAR UNA TABLA
 
 // AGREGAMOS LAS NOMENCLATURAS PARA DEFINIR UNA ENTIDAD SQLITE
-@Entity(tableName = "task_table")
+@Entity(tableName = "usuario_table")
 // la transformamos a dataclass y despues definimos sus atributos
-data class Task (
+data class Usuario (
     @PrimaryKey(autoGenerate = true)
     @NonNull
-    // sqlite mapea el objeto y lo transfroma en tabla
-   // val task: String,
-    val idTask: Int =0,
-    val title: String,
-    val descripcion: String,
-    val date: String,
-    val priority: Int,
-    val state: Boolean
+// sqlite mapea el objeto y lo transfroma en tabla
+    val id: Int =0,
+    val usuario: String,
+    val nombre: String,
+    val edad: Int
 
-
-    )
+)

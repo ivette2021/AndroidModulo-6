@@ -5,20 +5,17 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
+@Database(entities = [Usuario::class], version =1)  //exportamos directamente
 
-@Database(entities = [Task::class], version = 1) //exportamos directamente
-//@Database(entities = [Task::class], version = 1, exportSchema = false)
-abstract class TaskDataBase : RoomDatabase() { //nos aseguramos que esta clase sea unica
+abstract class UsuarioDataBase : RoomDatabase() {  //nos aseguramos que esta clase sea unica
 
-    //Dao tiene las operaciones de la base de datos
-    abstract fun getTaskDao(): TaskDao //conexion dao con la base de datos
+    abstract fun getUsuarioDao(): UsuarioDao //instancia del Dao siempre debe estar // conexion con la base de dato
+    companion object { //expone un objeto sin instanciar la clase
 
-    //instancia de forma directa
-    companion object {
-
+        //esta variable siempre este disponible
         @Volatile
-        private var INSTANCE: TaskDataBase? = null
-        fun getDatabase(context: Context): TaskDataBase {               //obtener nuestro contexto
+        private var INSTANCE: UsuarioDataBase? = null
+        fun getDatabase(context: Context): UsuarioDataBase {   //obtener nuestro contexto donde ejecutamos los procesos
 
             val tempInstance = INSTANCE
 
@@ -31,8 +28,8 @@ abstract class TaskDataBase : RoomDatabase() { //nos aseguramos que esta clase s
                     //la base de datos sea una para toda la app
                     context.applicationContext,
                     //nombre del archivo que contiene la base de datos
-                    TaskDataBase::class.java,
-                    "task_Database"
+                    UsuarioDataBase::class.java,
+                    "usuario_Database"
                 ).build() //aplicar los cambios
 
                 INSTANCE = instance
