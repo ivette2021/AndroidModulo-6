@@ -102,7 +102,17 @@ class FirstFragment : Fragment() {
             }
         }
     }
-
+   /* private fun deleteData() {
+        if (UsuarioSelected != null) {
+            viewModel.deleteUsuario(UsuarioSelected!!)
+            Toast.makeText(context, " DATOS ELIMINADOS", Toast.LENGTH_LONG).show()
+            binding.etUsuario.text.clear()
+            binding.etNombre.text.clear()
+            binding.etEdad.text.clear()
+        } else {
+            Toast.makeText(context, "No hay usuario seleccionado para eliminar", Toast.LENGTH_LONG).show()
+        }
+    }*/
     private fun deleteData() { //esta funcion esta sujeta a una variable que almacenara momentaneamente el click para posteriormente eliminar por el botno
         if (usuarioSeleccionado != null) {
             viewModel.deleteUsuario(usuarioSeleccionado!!)
