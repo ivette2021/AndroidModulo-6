@@ -31,7 +31,6 @@ class SecondFragment : Fragment() {
 
         _binding = FragmentSecondBinding.inflate(inflater, container, false)
         return binding.root
-
     }
 
      override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -46,7 +45,6 @@ class SecondFragment : Fragment() {
                  binding.etPriority.setText(selectedTask.priority.toString())
                  idTask =selectedTask.id
                  taskSelected =selectedTask
-
              }
 
          })
@@ -54,12 +52,10 @@ class SecondFragment : Fragment() {
          // button para guardar
 
          binding.btnsave.setOnClickListener{
-
              saveData()
              viewModel.selected(null)
              findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
          }
-
      }
     // funcion para guardar tareas
 
@@ -102,8 +98,6 @@ class SecondFragment : Fragment() {
             }
         }
     }
-
-
     override fun onDestroyView() {
         super.onDestroyView()
         // actualizar view model para destruir
